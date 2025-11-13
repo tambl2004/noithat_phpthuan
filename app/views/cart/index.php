@@ -20,7 +20,7 @@
         $total += $subtotal;
     ?>
         <tr>
-            <td><img src="/noithat/public/uploads/<?= $row['image'] ?>" width="80" class="rounded"></td>
+            <td><img src="<?= $row['image'] ?>" width="80" class="rounded"></td>
             <td><?= $row['name'] ?></td>
             <td class="text-danger fw-bold"><?= number_format($row['price']) ?>đ</td>
             <td><?= $row['quantity'] ?></td>
@@ -30,5 +30,12 @@
     <?php endwhile; ?>
     </tbody>
 </table>
+<h3 class="text-end mt-3">
+    Tổng tiền: <span class="text-danger fw-bold"><?= number_format($total) ?>đ</span>
+</h3>
 
-<h3 class="text-end mt-3">Tổng tiền: <span class="text-danger fw-bold"><?= number_format($total) ?>đ</span></h3>
+<div class="text-end mt-3">
+    <a href="index.php?option=thanhtoan" class="btn btn-primary btn-lg">
+        Đặt hàng
+    </a>
+</div>

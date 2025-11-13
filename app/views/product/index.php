@@ -1,3 +1,4 @@
+<!-- app/views/product/index.php -->
 <h2 class="mb-4">Danh sách sản phẩm</h2>
 
 <div class="row">
@@ -5,7 +6,7 @@
     <div class="col-md-3 mb-4">
         <div class="card shadow-sm h-100">
 
-            <img src="/noithat/public/uploads/<?= $item['image'] ?>" 
+            <img src="<?= $item['image'] ?>" 
                  class="card-img-top" 
                  style="height: 180px; object-fit: cover;">
 

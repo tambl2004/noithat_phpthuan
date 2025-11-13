@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <img src="/noithat/public/uploads/<?= $p['image'] ?>" 
+        <img src="<?= $p['image'] ?>" 
              class="img-fluid rounded shadow">
     </div>
 

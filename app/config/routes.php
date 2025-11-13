@@ -49,6 +49,17 @@ $routes = [
         'action' => 'logout'
     ],
 
+    // địa chỉ và thanh toán
+    'diachi' => [
+    'controller' => 'AddressController',
+    'action' => 'index'
+    ],
+
+    'thanhtoan' => [
+        'controller' => 'CheckoutController',
+        'action' => 'index'
+    ],
+
     // ADMIN
     'admin' => [
         'controller' => 'AdminController',
