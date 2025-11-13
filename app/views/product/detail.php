@@ -1,17 +1,22 @@
+<div class="row">
+    <div class="col-md-6">
+        <img src="/noithat/public/uploads/<?= $p['image'] ?>" 
+             class="img-fluid rounded shadow">
+    </div>
 
-<h2>Chi tiết sản phẩm</h2>
+    <div class="col-md-6">
+        <h2><?= $p['name'] ?></h2>
+        <h4 class="text-danger fw-bold"><?= number_format($p['price']) ?>đ</h4>
 
-<?php if (!empty($p)): ?>
+        <p class="mt-3"><?= $p['description'] ?></p>
 
-    <h3><?= $p['name'] ?></h3>
-    <p><b>Giá:</b> <?= number_format($p['price']) ?>đ</p>
-    <p><b>Mô tả:</b> <?= $p['description'] ?></p>
+        <a href="index.php?option=themgiohang&id=<?= $p['id'] ?>"
+           class="btn btn-success btn-lg mt-3">
+            Thêm vào giỏ hàng
+        </a>
 
-    <img src="/noithat/public/uploads/<?= $p['image'] ?>" width="300">
-
-    <br><br>
-    <a href="index.php?option=giohang&action=add&id=<?= $p['id'] ?>">Thêm vào giỏ hàng</a>
-
-<?php else: ?>
-    <p>Sản phẩm không tồn tại!</p>
-<?php endif; ?>
+        <a href="index.php?option=sanpham" class="btn btn-secondary btn-lg mt-3 ms-2">
+            Quay lại
+        </a>
+    </div>
+</div>

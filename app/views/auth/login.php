@@ -1,17 +1,37 @@
-<h2>Đăng nhập</h2>
+<div class="row justify-content-center">
+    <div class="col-md-5">
 
-<?php if (!empty($error)): ?>
-    <p style="color:red"><?= $error ?></p>
-<?php endif; ?>
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-<form method="POST">
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+                <h3 class="text-center mb-4">Đăng nhập</h3>
 
-    <label>Mật khẩu:</label><br>
-    <input type="password" name="password" required><br><br>
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-danger"><?= $error ?></div>
+                <?php endif; ?>
 
-    <button type="submit">Đăng nhập</button>
-</form>
+                <form method="POST">
 
-<p>Chưa có tài khoản? <a href="index.php?option=register">Đăng ký</a></p>
+                    <div class="mb-3">
+                        <label>Email:</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Mật khẩu:</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+
+                    <button class="btn btn-primary w-100">Đăng nhập</button>
+                </form>
+
+                <p class="text-center mt-3">
+                    Chưa có tài khoản? 
+                    <a href="index.php?option=register">Đăng ký</a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</div>

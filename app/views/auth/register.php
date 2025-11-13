@@ -1,24 +1,41 @@
-<h2>Đăng ký tài khoản</h2>
+<div class="row justify-content-center">
+    <div class="col-md-5">
 
-<?php if (!empty($error)): ?>
-    <p style="color:red"><?= $error ?></p>
-<?php endif; ?>
+        <div class="card shadow-sm">
+            <div class="card-body">
 
-<?php if (!empty($success)): ?>
-    <p style="color:green"><?= $success ?></p>
-<?php endif; ?>
+                <h3 class="text-center mb-4">Đăng ký</h3>
 
-<form method="POST">
-    <label>Họ tên:</label><br>
-    <input type="text" name="name" required><br><br>
+                <?php if (!empty($error)): ?>
+                    <div class="alert alert-danger"><?= $error ?></div>
+                <?php endif; ?>
 
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+                <?php if (!empty($success)): ?>
+                    <div class="alert alert-success"><?= $success ?></div>
+                <?php endif; ?>
 
-    <label>Mật khẩu:</label><br>
-    <input type="password" name="password" required><br><br>
+                <form method="POST">
 
-    <button type="submit">Đăng ký</button>
-</form>
+                    <div class="mb-3">
+                        <label>Họ tên:</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
 
-<p>Đã có tài khoản? <a href="index.php?option=login">Đăng nhập</a></p>
+                    <div class="mb-3">
+                        <label>Email:</label>
+                        <input type="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Mật khẩu:</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+
+                    <button class="btn btn-success w-100">Đăng ký</button>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>

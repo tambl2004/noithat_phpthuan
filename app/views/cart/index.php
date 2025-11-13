@@ -1,14 +1,18 @@
-<h2>Giỏ hàng của bạn</h2>
+<h2 class="mb-4">Giỏ hàng</h2>
 
-<table border="1" cellpadding="10">
+<table class="table table-bordered bg-white shadow-sm">
+    <thead class="table-dark">
     <tr>
         <th>Ảnh</th>
         <th>Sản phẩm</th>
         <th>Giá</th>
         <th>Số lượng</th>
+        <th>Thành tiền</th>
         <th></th>
     </tr>
+    </thead>
 
+    <tbody>
     <?php 
     $total = 0;
     while ($row = $items->fetch_assoc()):
@@ -16,14 +20,15 @@
         $total += $subtotal;
     ?>
         <tr>
-            <td><img src="/noithat/public/uploads/<?= $row['image'] ?>" width="80"></td>
+            <td><img src="/noithat/public/uploads/<?= $row['image'] ?>" width="80" class="rounded"></td>
             <td><?= $row['name'] ?></td>
-            <td><?= number_format($row['price']) ?>đ</td>
+            <td class="text-danger fw-bold"><?= number_format($row['price']) ?>đ</td>
             <td><?= $row['quantity'] ?></td>
-            <td><a href="index.php?option=xoagiohang&id=<?= $row['id'] ?>">Xoá</a></td>
+            <td class="fw-bold"><?= number_format($subtotal) ?>đ</td>
+            <td><a href="index.php?option=xoagiohang&id=<?= $row['id'] ?>" class="btn btn-sm btn-danger">X</a></td>
         </tr>
     <?php endwhile; ?>
-
+    </tbody>
 </table>
 
-<h3>Tổng tiền: <?= number_format($total) ?>đ</h3>
+<h3 class="text-end mt-3">Tổng tiền: <span class="text-danger fw-bold"><?= number_format($total) ?>đ</span></h3>
