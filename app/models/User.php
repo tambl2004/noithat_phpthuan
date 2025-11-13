@@ -13,15 +13,16 @@ class User extends Model {
         return $result->fetch_assoc();
     }
 
-    public function create($name, $email, $password) {
+    public function create($name, $email, $password, $role = 'user') {
         $conn = self::connect();
 
         $name = $conn->real_escape_string($name);
         $email = $conn->real_escape_string($email);
         $password = password_hash($password, PASSWORD_DEFAULT);
+        $role = $conn->real_escape_string($role);
 
-        $sql = "INSERT INTO users (name, email, password)
-                VALUES ('$name', '$email', '$password')";
+        $sql = "INSERT INTO users (name, email, password, role)
+                VALUES ('$name', '$email', '$password', '$role')";
 
         return $conn->query($sql);
     }

@@ -14,10 +14,16 @@
                 <h5 class="card-title"><?= $item['name'] ?></h5>
                 <p class="text-danger fw-bold"><?= number_format($item['price']) ?>đ</p>
 
-                <a href="index.php?option=chitietsanpham&id=<?= $item['id'] ?>"
-                   class="btn btn-outline-primary w-100">
-                    Xem chi tiết
-                </a>
+                <div class="mt-auto d-flex justify-content-between">
+                    <a href="index.php?controller=product&action=detail&id=<?= $item['id'] ?>"
+                    class="btn btn-sm btn-outline-primary">
+                        Xem chi tiết
+                    </a>
+                    <a href="index.php?controller=wishlist&action=add&product_id=<?= $item['id'] ?>"
+                    class="btn btn-sm btn-outline-danger">
+                        ❤ Yêu thích
+                    </a>
+                </div>
             </div>
 
         </div>

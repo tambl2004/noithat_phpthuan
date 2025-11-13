@@ -14,4 +14,31 @@ class Controller {
 
         include $layoutFile;
     }
+
+    /**
+     * Kiểm tra quyền admin - nếu không phải admin thì chuyển về trang đăng nhập
+     */
+    protected function checkAdmin() {
+        // Kiểm tra đã đăng nhập chưa
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?option=login");
+            exit;
+        }
+
+        // Kiểm tra quyền admin
+        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] != 'admin') {
+            header("Location: index.php?option=home");
+            exit;
+        }
+    }
+
+    /**
+     * Kiểm tra đã đăng nhập chưa
+     */
+    protected function checkLogin() {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?option=login");
+            exit;
+        }
+    }
 }

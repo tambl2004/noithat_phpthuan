@@ -46,4 +46,46 @@ class CartController extends Controller {
 
         header("Location: index.php?option=giohang");
     }
+    public function updateQuantity()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $cartItemId = $_POST['cart_item_id'] ?? null;
+            $type       = $_POST['type'] ?? null; // inc | dec
+
+            if ($cartItemId && in_array($type, ['inc','dec'])) {
+                require_once '../models/CartItem.php';
+                $cartItemModel = new CartItem();
+                $item = $cartItemModel->findById($cartItemId);
+
+                if ($item) {
+                    $qty = (int)$item['quantity'];
+                    if ($type === 'inc') $qty++;
+                    if ($type === 'dec' && $qty > 1) $qty--;
+
+                    $cartItemModel->updateQuantity($cartItemId, $qty);
+                }
+            }
+        }
+        header('Location: index.php?controller=cart&action=index');
+        exit;
+    }
+
+    public function checkoutSelected()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $selected = $_POST['selected_items'] ?? [];
+
+            if (empty($selected)) {
+                // Không chọn sản phẩm nào -> quay lại giỏ hàng
+                $_SESSION['cart_error'] = "Vui lòng chọn ít nhất 1 sản phẩm để đặt hàng.";
+                header('Location: index.php?controller=cart&action=index');
+                exit;
+            }
+
+            // Lưu danh sách item đã chọn vào session để sang trang thanh toán dùng
+            $_SESSION['checkout_items'] = $selected;
+            header('Location: index.php?controller=checkout&action=index');
+            exit;
+        }
+    }
 }

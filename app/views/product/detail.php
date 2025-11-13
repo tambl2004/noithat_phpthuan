@@ -10,10 +10,19 @@
 
         <p class="mt-3"><?= $p['description'] ?></p>
 
-        <a href="index.php?option=themgiohang&id=<?= $p['id'] ?>"
-           class="btn btn-success btn-lg mt-3">
-            Thêm vào giỏ hàng
-        </a>
+        <div class="d-flex gap-2 mt-3">
+            <form action="index.php?controller=cart&action=add" method="post">
+                <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                <button type="submit" class="btn btn-primary">
+                    Thêm vào giỏ hàng
+                </button>
+            </form>
+
+            <a href="index.php?controller=wishlist&action=add&product_id=<?= $product['id'] ?>"
+            class="btn btn-outline-danger">
+                ❤ Thêm vào yêu thích
+            </a>
+        </div>
 
         <a href="index.php?option=sanpham" class="btn btn-secondary btn-lg mt-3 ms-2">
             Quay lại

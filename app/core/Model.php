@@ -16,10 +16,10 @@ class Model extends Database {
 
         return $data;
     }
-
     public function find($id) {
         $conn = self::connect();
         $result = $conn->query("SELECT * FROM $this->table WHERE id = $id");
         return $result->fetch_assoc();
     }
+    
 }

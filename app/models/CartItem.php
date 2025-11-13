@@ -1,6 +1,8 @@
 <?php
 
 class CartItem extends Model {
+
+
     protected $table = "cart_items";
 
     public function getItems($cart_id) {
@@ -41,5 +43,25 @@ class CartItem extends Model {
     public function remove($id) {
         $conn = self::connect();
         $conn->query("DELETE FROM cart_items WHERE id = $id");
+    }
+    public function findById($id) {
+        $stmt = $this->conn->prepare("SELECT * FROM cart_items WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updateQuantity($id, $quantity) {
+        $stmt = $this->conn->prepare("UPDATE cart_items SET quantity = ? WHERE id = ?");
+        return $stmt->execute([$quantity, $id]);
+    }
+
+    public function getItemsByCartId($cartId) {
+        $sql = "SELECT ci.*, p.name AS product_name, p.image, p.price AS product_price
+                FROM cart_items ci
+                JOIN products p ON ci.product_id = p.id
+                WHERE ci.cart_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$cartId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -15,8 +15,14 @@ class AuthController extends Controller {
 
                 $_SESSION['user_id'] = $u['id'];
                 $_SESSION['user_name'] = $u['name'];
+                $_SESSION['user_role'] = $u['role'] ?? 'user'; // Lưu role vào session
 
-                header("Location: index.php?option=home");
+                // Chuyển hướng admin về dashboard, user về home
+                if ($u['role'] == 'admin') {
+                    header("Location: index.php?option=admin");
+                } else {
+                    header("Location: index.php?option=home");
+                }
                 exit;
             } else {
                 $data['error'] = "Email hoặc mật khẩu không đúng!";
@@ -42,7 +48,8 @@ class AuthController extends Controller {
                 return $this->render("auth/register", $data);
             }
 
-            $user->create($name, $email, $password);
+            // Đăng ký mặc định là user
+            $user->create($name, $email, $password, 'user');
 
             $data['success'] = "Đăng ký thành công! Mời bạn đăng nhập.";
             return $this->render("auth/login", $data);

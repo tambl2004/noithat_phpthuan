@@ -29,6 +29,7 @@
                 <li class="nav-item"><a class="nav-link" href="index.php?option=sanpham">Sản phẩm</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.php?option=giohang">Giỏ hàng</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.php?option=diachi">Địa chỉ của tôi</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.php?option=yeuthich">Sản phẩm yêu thích</a></li>
 
                 <?php if (!isset($_SESSION['user_id'])): ?>
                     <li class="nav-item"><a class="nav-link" href="index.php?option=login">Đăng nhập</a></li>
@@ -37,6 +38,9 @@
                     <li class="nav-item">
                         <span class="nav-link text-warning">Xin chào, <?= $_SESSION['user_name'] ?></span>
                     </li>
+                    <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'): ?>
+                        <li class="nav-item"><a class="nav-link text-info" href="index.php?option=admin">Admin</a></li>
+                    <?php endif; ?>
                     <li class="nav-item"><a class="nav-link" href="index.php?option=logout">Đăng xuất</a></li>
                 <?php endif; ?>
 
@@ -52,5 +56,6 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../public/js/cart.js"></script>
 </body>
 </html>
